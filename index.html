@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>İLK AŞK</title>
+  <title>Kaangeliyor</title>
   <style>
     body {
       background-color: #2f3136;
@@ -29,19 +29,11 @@
     }
 
     .message {
-      display: flex;
       padding: 12px 18px;
       border-radius: 10px;
       max-width: 70%;
       line-height: 1.5;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .message img {
-      border-radius: 50%;
-      width: 80px;
-      height: 33px;
-      margin-right: 10px;
     }
 
     .semaa {
@@ -100,23 +92,29 @@
       cursor: pointer;
       margin-left: 10px;
     }
+
+    /* Ses simgesi için stil */
+    #audio-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      background: #5865f2;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      user-select: none;
+    }
   </style>
 </head>
 <body>
+  <div class="intro-text">Bu, aşkla örülen yolların başlangıcı… Hasar gören yerleri sevgiyle onarma, yorgun düşse de el ele tutunma ve sonunda huzura varan iki kalbin hikayesi. ❤️</div>
   <div class="chat-container" id="chat-container">
-    <div class="message semaa">
-      <img src="sema-profile.jpg" alt="Semaa Profile">
-      <div>
-        <strong>Semaa - 13.03.2022 20:50</strong><br>Kaan selaam, aktifliği ve verimi arttırmak için şu an bulunduğumuz savaşçıya ek olarak bir sunucu daha açtık.<br>Orada plan program, haberleşme vs. yapıp normal savaşçıda etütlerimize girmeye devam edeceğiz.<br>Öyle işte, atıyorum daveti, gel!<br> <i>https://discord.gg/S4vrmcpn</i>
-      </div>
-    </div>
+    <div class="message semaa"><strong>Semaa - 13.03.2022 20:50</strong><br>Kaan selaam, aktifliği ve verimi arttırmak için şu an bulunduğumuz savaşçıya ek olarak bir sunucu daha açtık.<br>Orada plan program, haberleşme vs. yapıp normal savaşçıda etütlerimize girmeye devam edeceğiz.<br>Öyle işte, atıyorum daveti, gel😝<br> <i>https://discord.gg/S4vrmcpn</i></div>
     <div class="message system"><strong>BİR DAVET ALDIN, AMA...</strong><br>Geçersiz Davet<br>Semaa kullanıcısından yeni bir davet iste!</div>
-    <div class="message kaan">
-      <img src="kaan-profile.jpg" alt="Kaan Profile">
-      <div>
-        <strong>Kaan Kılınç - 13.03.2022 21:05</strong><br>Gelcem gelcem de...<br>Selam bu arada.<br>Giremiyorum, mesajlar yüklenemedi hatası veriyor.
-      </div>
-    </div>
+    <div class="message kaan"><strong>Kaan Kılınç - 13.03.2022 21:05</strong><br>Gelcem gelcem de...<br>Selam bu arada.<br>Giremiyorum, mesajlar yüklenemedi hatası veriyor.</div>
   </div>
   <div class="input-container">
     <input type="text" id="message-input" placeholder="Mesajınızı yazın...">
@@ -124,6 +122,15 @@
     <span class="heart-icon" onclick="sendSemaaMessage()">💙</span>
   </div>
   <div class="heart">❤️ Seninle tanıştığım için çok mutluyum ❤️</div>
+
+  <!-- Ses dosyası -->
+  <audio id="background-music">
+    <source src="banaelleriniver.mp3" type="audio/mpeg">
+    Tarayıcınız ses dosyasını desteklemiyor.
+  </audio>
+
+  <!-- Ses simgesi -->
+  <div id="audio-icon" onclick="toggleMusic()">🔊</div>
 
   <script>
     function sendKaanMessage() {
@@ -134,7 +141,7 @@
       const chatContainer = document.getElementById("chat-container");
       const messageElement = document.createElement("div");
       messageElement.classList.add("message", "kaan");
-      messageElement.innerHTML = `<img src="kaan-profile.JPG" alt="Kaan Profile"><div><strong>Kaan Kılınç - ${new Date().toLocaleTimeString()}</strong><br>${messageText}</div>`;
+      messageElement.innerHTML = `<strong>Kaan Kılınç - ${new Date().toLocaleTimeString()}</strong><br>${messageText}`;
       chatContainer.appendChild(messageElement);
 
       input.value = "";
@@ -149,11 +156,27 @@
       const chatContainer = document.getElementById("chat-container");
       const messageElement = document.createElement("div");
       messageElement.classList.add("message", "semaa");
-      messageElement.innerHTML = `<img src="sema-profile.JPG" alt="Semaa Profile"><div><strong>Semaa - ${new Date().toLocaleTimeString()}</strong><br>${messageText}</div>`;
+      messageElement.innerHTML = `<strong>Semaa - ${new Date().toLocaleTimeString()}</strong><br>${messageText}`;
       chatContainer.appendChild(messageElement);
 
       input.value = "";
       chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    // Ses çalma fonksiyonu
+    let isPlaying = false;
+    const audio = document.getElementById("background-music");
+    const icon = document.getElementById("audio-icon");
+
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        icon.textContent = "🔊"; // Ses kapalı simgesi
+      } else {
+        audio.play().catch(error => console.log("Oynatma hatası:", error));
+        icon.textContent = "🔈"; // Ses açık simgesi
+      }
+      isPlaying = !isPlaying;
     }
   </script>
 </body>
