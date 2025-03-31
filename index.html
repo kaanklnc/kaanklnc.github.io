@@ -34,8 +34,6 @@
       max-width: 70%;
       line-height: 1.5;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
     }
 
     .semaa {
@@ -48,13 +46,6 @@
       align-self: flex-end;
       background: #3ba55c;
       color: white;
-    }
-
-    .profile-pic {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
     }
 
     .input-container {
@@ -121,23 +112,14 @@
 <body>
   <div class="intro-text">Bu, aşkla örülen yolların başlangıcı… Hasar gören yerleri sevgiyle onarma, yorgun düşse de el ele tutunma ve sonunda huzura varan iki kalbin hikayesi. ❤️</div>
   <div class="chat-container" id="chat-container">
-    <div class="message semaa">
-      <img src="semaa-profile.jpg" alt="Semaa" class="profile-pic">
-      <strong>Semaa - 13.03.2022 20:50</strong><br>
-      Kaan selaam, aktifliği ve verimi arttırmak için şu an bulunduğumuz savaşçıya ek olarak bir sunucu daha açtık.<br> 
-      Orada plan program, haberleşme vs. yapıp normal savaşçıda etütlerimize girmeye devam edeceğiz.<br> 
-      Öyle işte, atıyorum daveti, gel😝<br> <i>https://discord.gg/S4vrmcpn</i>
-    </div>
+    <div class="message semaa"><strong>Semaa - 13.03.2022 20:50</strong><br>Kaan selaam, aktifliği ve verimi arttırmak için şu an bulunduğumuz savaşçıya ek olarak bir sunucu daha açtık.<br>Orada plan program, haberleşme vs. yapıp normal savaşçıda etütlerimize girmeye devam edeceğiz.<br>Öyle işte, atıyorum daveti, gel😝<br> <i>https://discord.gg/S4vrmcpn</i></div>
     <div class="message system"><strong>BİR DAVET ALDIN, AMA...</strong><br>Geçersiz Davet<br>Semaa kullanıcısından yeni bir davet iste!</div>
-    <div class="message kaan">
-      <img src="kaan-profile.jpg" alt="Kaan" class="profile-pic">
-      <strong>Kaan Kılınç - 13.03.2022 21:05</strong><br>Gelcem gelcem de...<br>Selam bu arada.<br>Giremiyorum, mesajlar yüklenemedi hatası veriyor.
-    </div>
+    <div class="message kaan"><strong>Kaan Kılınç - 13.03.2022 21:05</strong><br>Gelcem gelcem de...<br>Selam bu arada.<br>Giremiyorum, mesajlar yüklenemedi hatası veriyor.</div>
   </div>
   <div class="input-container">
     <input type="text" id="message-input" placeholder="Mesajınızı yazın...">
-    <span class="heart-icon" onclick="sendKaanMessage()">💜</span>
     <span class="heart-icon" onclick="sendSemaaMessage()">💙</span>
+    <span class="heart-icon" onclick="sendKaanMessage()">💜</span>
   </div>
   <div class="heart">❤️ Seninle tanıştığım için çok mutluyum ❤️</div>
 
@@ -159,10 +141,7 @@
       const chatContainer = document.getElementById("chat-container");
       const messageElement = document.createElement("div");
       messageElement.classList.add("message", "kaan");
-      messageElement.innerHTML = `
-        <img src="kaan-profile.jpg" alt="Kaan" class="profile-pic">
-        <strong>Kaan Kılınç - ${new Date().toLocaleTimeString()}</strong><br>${messageText}
-      `;
+      messageElement.innerHTML = `<strong>Kaan Kılınç - ${new Date().toLocaleTimeString()}</strong><br>${messageText}`;
       chatContainer.appendChild(messageElement);
 
       input.value = "";
@@ -177,10 +156,7 @@
       const chatContainer = document.getElementById("chat-container");
       const messageElement = document.createElement("div");
       messageElement.classList.add("message", "semaa");
-      messageElement.innerHTML = `
-        <img src="semaa-profile.jpg" alt="Semaa" class="profile-pic">
-        <strong>Semaa - ${new Date().toLocaleTimeString()}</strong><br>${messageText}
-      `;
+      messageElement.innerHTML = `<strong>Semaa - ${new Date().toLocaleTimeString()}</strong><br>${messageText}`;
       chatContainer.appendChild(messageElement);
 
       input.value = "";
