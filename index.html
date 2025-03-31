@@ -29,11 +29,20 @@
     }
 
     .message {
+      display: flex;
+      align-items: flex-start;
       padding: 12px 18px;
       border-radius: 10px;
       max-width: 70%;
       line-height: 1.5;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .message img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
     }
 
     .semaa {
@@ -63,37 +72,12 @@
       outline: none;
     }
 
-    button {
-      width: 30%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background: #5865f2;
-      color: white;
-      cursor: pointer;
-    }
-
     .heart {
       margin-top: 20px;
       font-size: 24px;
       color: red;
     }
 
-    .edit-icon {
-      color: #5865f2;
-      font-size: 20px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    .heart-icon {
-      font-size: 20px;
-      color: #5865f2;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    /* Ses simgesi için stil */
     #audio-icon {
       position: fixed;
       top: 20px;
@@ -112,9 +96,15 @@
 <body>
   <div class="intro-text">Bu, aşkla örülen yolların başlangıcı… Hasar gören yerleri sevgiyle onarma, yorgun düşse de el ele tutunma ve sonunda huzura varan iki kalbin hikayesi. ❤️</div>
   <div class="chat-container" id="chat-container">
-    <div class="message semaa"><strong>Semaa - 13.03.2022 20:50</strong><br>Kaan selaam, aktifliği ve verimi arttırmak için şu an bulunduğumuz savaşçıya ek olarak bir sunucu daha açtık.<br>Orada plan program, haberleşme vs. yapıp normal savaşçıda etütlerimize girmeye devam edeceğiz.<br>Öyle işte, atıyorum daveti, gel😝<br> <i>https://discord.gg/S4vrmcpn</i></div>
+    <div class="message semaa">
+      <img src="sema-profile.jpg" alt="Semaa">
+      <div><strong>Semaa - 13.03.2022 20:50</strong><br>Kaan selaam, aktifliği ve verimi arttırmak için şu an bulunduğumuz savaşçıya ek olarak bir sunucu daha açtık.<br>Orada plan program, haberleşme vs. yapıp normal savaşçıda etütlerimize girmeye devam edeceğiz.<br>Öyle işte, atıyorum daveti, gel😝<br> <i>https://discord.gg/S4vrmcpn</i></div>
+    </div>
     <div class="message system"><strong>BİR DAVET ALDIN, AMA...</strong><br>Geçersiz Davet<br>Semaa kullanıcısından yeni bir davet iste!</div>
-    <div class="message kaan"><strong>Kaan Kılınç - 13.03.2022 21:05</strong><br>Gelcem gelcem de...<br>Selam bu arada.<br>Giremiyorum, mesajlar yüklenemedi hatası veriyor.</div>
+    <div class="message kaan">
+      <img src="kaan-profile.jpg" alt="Kaan">
+      <div><strong>Kaan Kılınç - 13.03.2022 21:05</strong><br>Gelcem gelcem de...<br>Selam bu arada.<br>Giremiyorum, mesajlar yüklenemedi hatası veriyor.</div>
+    </div>
   </div>
   <div class="input-container">
     <input type="text" id="message-input" placeholder="Mesajınızı yazın...">
@@ -123,47 +113,13 @@
   </div>
   <div class="heart">❤️ Seninle tanıştığım için çok mutluyum ❤️</div>
 
-  <!-- Ses dosyası -->
   <audio id="background-music">
     <source src="banaelleriniver.mp3" type="audio/mpeg">
     Tarayıcınız ses dosyasını desteklemiyor.
   </audio>
-
-  <!-- Ses simgesi -->
   <div id="audio-icon" onclick="toggleMusic()">🔊</div>
 
   <script>
-    function sendKaanMessage() {
-      const input = document.getElementById("message-input");
-      const messageText = input.value.trim();
-      if (messageText === "") return;
-
-      const chatContainer = document.getElementById("chat-container");
-      const messageElement = document.createElement("div");
-      messageElement.classList.add("message", "kaan");
-      messageElement.innerHTML = `<strong>Kaan Kılınç - ${new Date().toLocaleTimeString()}</strong><br>${messageText}`;
-      chatContainer.appendChild(messageElement);
-
-      input.value = "";
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-
-    function sendSemaaMessage() {
-      const input = document.getElementById("message-input");
-      const messageText = input.value.trim();
-      if (messageText === "") return;
-
-      const chatContainer = document.getElementById("chat-container");
-      const messageElement = document.createElement("div");
-      messageElement.classList.add("message", "semaa");
-      messageElement.innerHTML = `<strong>Semaa - ${new Date().toLocaleTimeString()}</strong><br>${messageText}`;
-      chatContainer.appendChild(messageElement);
-
-      input.value = "";
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-
-    // Ses çalma fonksiyonu
     let isPlaying = false;
     const audio = document.getElementById("background-music");
     const icon = document.getElementById("audio-icon");
@@ -171,10 +127,10 @@
     function toggleMusic() {
       if (isPlaying) {
         audio.pause();
-        icon.textContent = "🔊"; // Ses kapalı simgesi
+        icon.textContent = "🔊";
       } else {
         audio.play().catch(error => console.log("Oynatma hatası:", error));
-        icon.textContent = "🔈"; // Ses açık simgesi
+        icon.textContent = "🔈";
       }
       isPlaying = !isPlaying;
     }
